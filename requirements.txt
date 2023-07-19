@@ -3,3 +3,4 @@ uvicorn==0.23.1
 python-miio @ git+https://github.com/rytilahti/python-miio.git
 prometheus-client==0.17.1
 asyncio==3.4.3
+loguru==0.7.0
