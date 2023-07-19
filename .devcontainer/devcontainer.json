@@ -1,0 +1,23 @@
+{
+	"name": "Python 3",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "devcontainer",
+	"workspaceFolder": "/workspace",
+	"customizations": {
+		"vscode": {
+			"python.defaultInterpreterPath": "/usr/local/bin/python"
+		},
+		"extensions": [
+			"vscode-icons-team.vscode-icons",
+			"EditorConfig.EditorConfig",
+			"dbaeumer.vscode-eslint",
+			"esbenp.prettier-vscode",
+			"CoenraadS.bracket-pair-colorizer-2",
+			"kevinrose.vsc-python-indent",
+			"ms-python.python",
+			"ms-python.vscode-pylance",
+			"git.path"
+		]
+	},
+	"shutdownAction": "stopCompose"
+}

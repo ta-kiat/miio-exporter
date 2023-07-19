@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+# Dev container
+  devcontainer:
+    build:
+      context: ../
+      dockerfile: ./.devcontainer/dev-container/Dockerfile
+    volumes:
+      - ..:/workspace:cached
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    user: vscode
+    env_file:
+      - ./../.env
