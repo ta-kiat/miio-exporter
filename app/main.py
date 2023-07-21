@@ -21,14 +21,17 @@ class BackgroundRunner:
         self.device_ip = device_ip
         self.device_token = device_token
         self.device = self.connect_device()
-        self.device_model = location + self.device.info().model
+        self.device_model = location + (self.device.info().model if self.device != None else 'device')
         self.dev_metrics = re.sub('[^0-9a-zA-Z]+', '_', self.device_model).lower()
         self.temperature_gauge = Gauge('{dev_metrics}_temperature'.format(dev_metrics=self.dev_metrics), 'Temperature of {dev_model}'.format(dev_model=self.device_model))
         self.humidity_gauge = Gauge('{dev_metrics}_humidity'.format(dev_metrics=self.dev_metrics), 'Humidity of {dev_model}'.format(dev_model=self.device_model))
         self.aqi_gauge = Gauge('{dev_metrics}_aqi'.format(dev_metrics=self.dev_metrics), 'Aqi of {dev_model}'.format(dev_model=self.device_model))
 
     def connect_device(self):
-        return DeviceFactory.create(self.device_ip, self.device_token)
+        try:
+            return DeviceFactory.create(self.device_ip, self.device_token)
+        except:
+            return None
     
     async def run_main(self):
         while True:
